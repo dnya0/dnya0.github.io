@@ -1,7 +1,7 @@
 ---
 title: Cloudeflare CDN 설정하기
 author: dnya0
-date: 2025-11-29 21:00:00 +0900
+date: 2025-11-29 19:00:00 +0900
 categories: [Post, Cloudeflare]
 tag: [Post, CDN, Cloudflare]
 math: true
