@@ -4,7 +4,7 @@ order: 4
 ---
 
 Hello, I'm <a href="https://github.com/dnya0">Nayeong Ahn.</a> It is a blog that summarizes what I've studied.
-
+<!-- 
     
 <h2>⚡Projects⚡</h2>
     
@@ -20,4 +20,4 @@ Hello, I'm <a href="https://github.com/dnya0">Nayeong Ahn.</a> It is a blog that
     <li><a href="https://github.com/youbbin/DB_Project_OwnPli">[KNU] DataBase Programming Project - OwnPli</a></li>
     <li><a href="https://github.com/LikeKNU">[KNU] LikeKNU</a></li>
 </ul>
-
+ -->
