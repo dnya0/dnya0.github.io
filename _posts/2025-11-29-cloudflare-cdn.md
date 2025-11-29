@@ -7,7 +7,7 @@ tag: [Post, CDN, Cloudflare]
 math: true
 mermaid: true
 image:
-  path: ../assets/img/posts-image/cloudflare.png
+  path: ../assets/img/posts-image/cloudflare.jpg
   alt: Cloudflare Image
 ---
 
