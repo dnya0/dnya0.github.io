@@ -25,8 +25,8 @@ image:
 | :-------: | :------------------------------- |
 | Language  | Java 17                          |
 |   Build   | Gradle                           |
-| Database  | Mysql, Spring Data JPA, QueryDsl |
 | Framework | SpringBoot                       |
+| Database  | Mysql, Spring Data JPA, QueryDsl |
 |   Test    | AssertJ, Jacoco                  |
 |  Logging  | Logback                          |
 |    etc    | Spotless, Swagger                |
@@ -135,7 +135,7 @@ public abstract class BaseEntity implements Serializable {
 
 이는 **"equals()가 true를 반환하면 hashCode()도 같아야 한다"**는 Java의 Object 계약을 위반하게 된다. 아마 코드를 수정하게 된다면 `Serializable`을 제거한 뒤, `hashCode`를 아래와 같이 수정할 것 같다.
 
-```java 
+```java
 @Override
 public int hashCode() {
     return id == null ? 31 : Objects.hash(id);
@@ -384,7 +384,6 @@ public class CourseQueryRepositoryImpl implements CourseQueryRepository {
 
 사실 어느 방식이 좋은지는 모르겠다.. 처음에 내가 의도한 바는 중복 쿼리를 만들고싶지 않아서였는데 개발하다보니 오히려 더 복잡해져버린 것 같기도 하고.. 개발 기한이 얼마 남지 않은 상태에서 querydsl을 적용하였기 때문에 깊은 생각을 못했던 것 같다. 기존 방식으로 개발하는게 더 가독성 면에서도, 코드 복잡도 면에서도 좋은 방법이 아닐까.
 
-
 ## 💡 추가로 알게된 것
 
 ### Jacoco
@@ -427,7 +426,6 @@ $ ./gradlew --console verbose test jacocoTestReport jacocoTestCoverageVerificati
 이후 `build > reports > jacoco > test > html` 폴더에서 `index.html`을 실행시키면 된다.
 
 ![](/assets/img/posts-image/2025-11-18-04.png)
-
 
 ### 멱등성과 멱등키
 
