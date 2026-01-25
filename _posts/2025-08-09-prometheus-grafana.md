@@ -295,7 +295,7 @@ DATA SOURCES로 들어가주면 된다. Prometheus를 선택한 뒤
 
 ![](/assets/img/posts-image/2025-08-09-02.png)
 
-Connection에 `http://<ec2-public-ip:9090`을 입력한다.
+Connection에 `http://<container-name>:9090`을 입력한다. `http://<ec2-public-ip>:9090`도 괜찮다.
 
 아래에서 save & test 버튼을 눌러서 
 
