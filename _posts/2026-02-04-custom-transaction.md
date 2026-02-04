@@ -17,7 +17,7 @@ image:
 
 <br>
 
-## 🚨 `@Transactional` 한계
+## 🚨 @Transactional 한계
 
 [이전에 작성했던 글](https://dnya0.github.io/posts/Spring-AOP-Transactional/)을 보면 `@Transactional`의 한계를 비교적 명확하게 확인할 수 있다. 간단히 말해, AOP는 프록시 패턴을 기반으로 동작하며 `@Transactional`은 AOP의 대표적인 활용 사례라는 점이다. 이로 인해 트랜잭션은 객체 외부에서 최초로 진입하는 메서드를 기준으로 적용되며, 동일 객체 내부의 메서드 호출(self-invocation)에는 트랜잭션이 적용되지 않는다.
 
@@ -27,7 +27,7 @@ image:
 
 <br>
 
-## 💡 `@Transactional` 극복해보기
+## 💡 @Transactional 극복해보기
 
 ### 구현
 
@@ -38,7 +38,7 @@ image:
 annotation class ReadOnlyTransactional()
 ```
 
-Transaction을 걸어주기 위한 클래스 하나를 생성한다. `@Transactional`을 붙여 해당 로직에 AOP를 적용시킨다. 이 클래스가 트랜잭션 경계를 보장할 진입점 클래스가 되는 것이다.
+트랜잭션을 걸어주기 위한 클래스 하나를 생성한다. `@Transactional`을 붙여 해당 로직에 AOP를 적용시킨다. 이 클래스가 트랜잭션 경계를 보장할 진입점 클래스가 되는 것이다.
 
 ```kotlin
 @Component
