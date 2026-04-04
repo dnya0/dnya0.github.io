@@ -85,7 +85,7 @@ class TransactionConfig {
 
 이제 내부 메서드를 호출하더라도, `Tx -> TransactionRunner(프록시) -> 실제 메서드 순`으로 호출되어 AOP가 적용된다.
 
-그렇다면 언제 이 패턴이 유리할까? self-invocation 이슈가 잦은 팀/코드베이스나 코드 블록 단위로 경계를 명시하고 싶은 팀
+그렇다면 언제 이 패턴이 유리할까? self-invocation 이슈가 잦은 팀 또는 코드베이스나 코드 블록 단위로 경계를 명시하고 싶은 팀에게 추천한다.
 
 <br>
 
