@@ -7,7 +7,7 @@ tag: [Post, Study, Terraform, Infra]
 math: true
 mermaid: true
 image:
-path: ../assets/img/posts-image/terraform.png
+  path: ../assets/img/posts-image/terraform.png
   alt: Spring Image
 ---
 
