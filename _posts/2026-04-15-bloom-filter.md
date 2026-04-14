@@ -87,7 +87,7 @@ Bloom Filter는 크게 두 가지로 구성된다.
 
 그림으로 보면 더 직관적이다.
 
-![](/assets/img/posts-image/2026-04-15-05.png){: width="972" height="589" }
+![](/assets/img/posts-image/2026-04-15-05.png){: height="589" }
 
 여기서 중요한 특징이 나온다.
 
