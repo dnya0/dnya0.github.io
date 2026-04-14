@@ -43,7 +43,15 @@ Bloom Filter는 크게 두 가지로 구성된다.
 
 간단하게 그리면 이런 느낌이다.
 
-![](/assets/img/posts-image/2026-04-15-03.png)
+```mermaid
+flowchart LR
+    A[alice 입력] --> H1[해시 함수 1]
+    A --> H2[해시 함수 2]
+    A --> H3[해시 함수 3]
+    H1 --> B3[bit 3 = 1]
+    H2 --> B10[bit 10 = 1]
+    H3 --> B21[bit 21 = 1]
+```
 
 이제 어떤 사용자가 `alice`가 사용 가능한지 확인하려고 하면, 동일하게 여러 해시 함수를 적용해서 같은 위치들을 확인한다.
 
@@ -52,7 +60,14 @@ Bloom Filter는 크게 두 가지로 구성된다.
 
 조회 과정도 그림으로 보면 더 직관적이다.
 
-![](/assets/img/posts-image/2026-04-15-04.png)
+```mermaid
+flowchart TD
+    Q[alice 조회] --> K[같은 해시 함수들 적용]
+    K --> C{해당 비트들이 모두 1인가?}
+    C -->|아니오| N[확실히 없음]
+    C -->|예| P[있을 가능성 높음]
+    P --> DB[필요하면 DB에서 최종 확인]
+```
 
 왜 이런 판정이 가능할까? `alice`가 실제로 한 번도 들어간 적이 없다면, `alice`가 가리키는 비트들 중 적어도 하나는 아직 `0`일 가능성이 높다. 그러면 Bloom Filter는 곧바로 "이 값은 없다"고 판단할 수 있다.
 
@@ -204,7 +219,16 @@ $$
 
 아래처럼 흐름을 그려볼 수 있다.
 
-![](/assets/img/posts-image/2026-04-15-01.png)
+```mermaid
+flowchart TD
+    A[사용자가 사용자 이름 입력] --> B[Bloom Filter 조회]
+    B -->|하나라도 0 비트 존재| C[존재하지 않음으로 판정]
+    B -->|모든 비트가 1| D[존재 가능성 있음]
+    C --> E[사용 가능성이 높다고 빠르게 응답]
+    D --> F[실제 DB 조회]
+    F -->|이미 존재함| G[이미 사용 중 응답]
+    F -->|실제로 없음| H[사용 가능 응답]
+```
 
 <br>
 
@@ -229,7 +253,22 @@ $$
 
 동시성까지 포함하면 최종 저장 단계는 아래와 같이 이해할 수 있다.
 
-![](/assets/img/posts-image/2026-04-15-02.png)
+```mermaid
+sequenceDiagram
+    participant U1 as 사용자 A
+    participant U2 as 사용자 B
+    participant App as 애플리케이션
+    participant DB as 데이터베이스
+
+    U1->>App: 같은 사용자 이름 제출
+    U2->>App: 같은 사용자 이름 제출
+    App->>DB: INSERT 시도
+    App->>DB: INSERT 시도
+    DB-->>App: 첫 번째 요청 성공
+    DB-->>App: 두 번째 요청 UNIQUE 제약 실패
+    App-->>U1: 가입 성공
+    App-->>U2: 이미 사용 중
+```
 
 <br>
 
