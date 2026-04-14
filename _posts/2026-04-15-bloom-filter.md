@@ -87,7 +87,18 @@ Bloom Filter는 크게 두 가지로 구성된다.
 
 그림으로 보면 더 직관적이다.
 
-![](/assets/img/posts-image/2026-04-15-05.png){: height="589" }
+```mermaid
+flowchart TD
+    A[초기 비트 배열<br/>0000000000]
+    A --> B[alice 삽입<br/>hash -> 1, 4, 7]
+    B --> C[비트 배열<br/>0100100100]
+    C --> D[bob 삽입<br/>hash -> 2, 4, 8]
+    D --> E[비트 배열<br/>0110100110]
+    E --> F[carol 조회<br/>hash -> 1, 2, 7]
+    F --> G{1, 2, 7 위치가<br/>모두 1인가?}
+    G -->|예| H[있을 수 있음으로 판정]
+    H --> I[실제론 삽입된 적 없음<br/>false positive]
+```
 
 여기서 중요한 특징이 나온다.
 
