@@ -81,7 +81,7 @@ Event Loop는 혼자 동작하지 않는다. 브라우저(또는 Node.js) 안에
 
 ![](/assets/img/posts-image/2026-05-14-13.png)
 
-각 구성 요소의 역할은 다음과 같다.
+각 구성 요소가 하는 일은 이렇다.
 
 - **Call Stack**: JS 엔진이 코드를 실행하는 공간. 함수 호출이 쌓이고 반환되며 비워진다.
 - **Heap**: 동적으로 생성된 객체가 저장되는 메모리 공간.
@@ -120,38 +120,35 @@ console.log('End!'); // Call Stack에서 즉시 실행
 // 출력 순서: 1 → 4 → 3 → 2
 ```
 
-1. Call Stack에 console.log('Start!') 코드 부분이 쌓인 뒤 실행 되어 콘솔창에 "Start!" 가 출력
+`console.log('Start!')`가 Call Stack에 올라가 즉시 실행되고 "Start!"가 출력된다.
 
 ![](/assets/img/posts-image/2026-05-14-02.gif)
 
-
-2. setTimeout 코드가 콜 스택에 적재되고 실행되면, 그 안의 콜백 함수가 이벤트 루프에 의해 Web API로 옮겨지고 타이머가 작동하게 된다. (0초라서 사실상 바로 타이머는 종료된다)
+`setTimeout`이 실행되면 콜백 함수가 Web API로 전달되고 타이머가 시작된다. 딜레이가 0초이므로 타이머는 곧바로 종료된다.
 
 ![](/assets/img/posts-image/2026-05-14-03.gif)
 
-3. 타이머가 종료됨에 따라 setTimeout 의 콜백 함수는 MacroTask Queue에 이벤트 루프에 의해 적재되게 된다.
+타이머가 끝난 콜백은 Task Queue(MacroTask Queue)에 들어가 대기한다.
 
-4. Promise 코드가 콜스택에 적재 되어 실행되고 then 핸들러의 콜백 함수가 이벤트 루프에 의해 MicroTask Queue에 적재되게 된다.
+`Promise.resolve(...).then(...)`이 실행되면 `.then()` 핸들러의 콜백이 Microtask Queue에 들어간다.
 
 ![](/assets/img/posts-image/2026-05-14-04.gif)
 
-5. `console.log('End!')` 코드가 실행되고 "End!" 텍스트가 콘솔창에 출력된다.
+`console.log('End!')`가 실행되고 "End!"가 출력된다.
 
 ![](/assets/img/posts-image/2026-05-14-05.gif)
 
-6. 모든 메인 스레드의 자바스크립트 코드가 실행이되어 더이상 Call Stack엔 실행할 스택이 없어 비워지게 된다.
+동기 코드가 모두 실행되면 Call Stack이 비워진다. Event Loop는 이 순간을 감지하고 Microtask Queue를 먼저 확인한다.
 
-7. 그러면 이벤트 핸들러가 이를 감지하여, Callback Queue에 남아있는 콜백 함수들을 빼와 Call Stack에 적재하게 된다.
-
-8. 이때 2종류의 Queue 중 MicroTask Queue에 남아있는 콜백이 우선적으로 처리된다. (만일 콜백이 여러 개가 있다면 전부 처리된다)
+Microtask Queue에 대기 중인 Promise 콜백이 꺼내져 실행된다. Microtask Queue는 비워질 때까지 한 번에 전부 처리된다.
 
 ![](/assets/img/posts-image/2026-05-14-06.gif)
 
-9. MicroTask Queue가 비어지면, 이제 이벤트 루프는 MacroTask Queue에 있는 콜백 함수를 Call Stack에 적재해 실행되게 된다.
+Microtask Queue가 모두 비워지면 Task Queue에서 `setTimeout` 콜백을 꺼내 실행한다.
 
 ![](/assets/img/posts-image/2026-05-14-07.gif)
 
-Microtask(Promise)가 Task(setTimeout)보다 먼저 처리된다는 점이 핵심이다.
+**Microtask(Promise)가 Task(setTimeout)보다 항상 먼저 처리된다는 점이 핵심이다.**
 
 <br>
 
@@ -313,7 +310,7 @@ async function myFunc() {
 }
 ```
 
-겉으로는 순서대로 실행되는 것처럼 보이지만, 내부적으로는 두 번의 Microtask Queue 경유가 일어난다. 결과적으로 `Step 1 → Step 2 → Step 3` 순서는 보장된다.
+겉으로는 순서대로 실행되는 것처럼 보이지만, 내부적으로는 Microtask Queue를 두 번 거친다. 결과적으로 `Step 1 → Step 2 → Step 3` 순서는 보장된다.
 
 ### 주의: 호출부에도 await를 붙이면?
 
@@ -323,7 +320,7 @@ await myFunc();                   // 호출부에도 await
 console.log('After Function!');
 ```
 
-이 경우 `myFunc()`이 반환하는 Promise가 resolve될 때까지 `After Function!` 줄도 Microtask Queue에서 대기한다.
+이 경우 `myFunc()`가 완전히 끝날 때까지 그 아래 코드도 함께 기다린다.
 
 ```
 // 출력 순서:
@@ -362,7 +359,7 @@ for (const row of rows) {
 console.log('Done'); // 모든 insert 완료 후 출력됨
 ```
 
-`forEach`는 콜백의 반환값(Promise)을 무시한다. `async` 콜백을 순서대로 기다려야 한다면 반드시 `for...of`를 사용해야 한다.
+`forEach`는 콜백의 반환값(Promise)을 그냥 무시한다. 순서를 보장하고 싶다면 `for...of`를 쓰자.
 
 <br>
 
@@ -394,7 +391,7 @@ function loop() {
 loop(); // 이 순간부터 브라우저가 응답을 멈춘다
 ```
 
-백엔드 관점에서도 마찬가지다. Node.js 서버에서 Promise 체인이 무한히 이어지거나 Microtask Queue를 과도하게 채우는 로직이 있다면, 다른 요청들이 처리되지 못하는 상황이 발생할 수 있다.
+백엔드 관점에서도 마찬가지다. Node.js 서버에서 Promise 체인이 무한히 이어지거나 Microtask Queue를 과도하게 채우는 로직이 있다면, 다른 요청들이 줄줄이 밀리게 된다.
 
 <br>
 
@@ -530,7 +527,7 @@ Node.js와 달리 **멀티 스레드 기반의 Event Loop**를 사용한다. Net
 
 #### 요청 처리 흐름 — Channel Pipeline
 
-연결이 Worker EventLoop에 배정되면, 요청은 **Channel Pipeline**을 통해 Handler 체인을 순서대로 통과한다.
+연결이 Worker EventLoop에 배정되고 나면, 요청은 **Channel Pipeline**을 따라 Handler를 하나씩 통과한다.
 
 ```
 클라이언트 요청
@@ -554,7 +551,7 @@ Worker EventLoop (Channel 고정)
 클라이언트 응답
 ```
 
-각 Handler는 비동기로 동작하며, 이전 Handler의 처리가 완료되면 다음 Handler로 넘어간다.
+각 Handler는 비동기로 동작하고, 앞 Handler가 끝나면 다음으로 넘어간다.
 
 #### WebFlux + Reactor의 스케줄러
 
@@ -676,7 +673,7 @@ async def get_data():
         return response.json()
 ```
 
-**규칙**: `await`를 붙일 수 없는 블로킹 코드는 별도 스레드나 프로세스 풀로 옮겨야 한다.
+**규칙**: 비동기로 바꿀 수 없는 블로킹 코드는 별도 스레드나 프로세스 풀에서 실행해야 한다.
 
 <br>
 
@@ -696,7 +693,7 @@ Event Loop의 원리를 이해했다면, 실무에서 자주 만나는 케이스
   → 응답 반환
 ```
 
-이 작업은 **CPU 집약 구간(파싱)** 과 **I/O 집약 구간(DB Insert)** 이 혼합된 케이스다.
+파싱(CPU)과 DB Insert(I/O)가 섞인 작업이라, Event Loop 입장에서 신경 써야 할 구간이 두 곳이다.
 
 ### 1구간: 엑셀 파싱 — Event Loop를 블로킹한다
 
@@ -827,7 +824,7 @@ async handleBatchInsert(job: Job) {
 }
 ```
 
-이 패턴을 사용하면 API 서버의 Event Loop는 항상 가볍게 유지되고, 실제 무거운 작업은 Worker가 담당한다.
+이렇게 하면 API 서버의 Event Loop는 항상 가볍고, 무거운 작업은 Worker가 전담한다.
 
 <br>
 
