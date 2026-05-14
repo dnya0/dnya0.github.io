@@ -2,8 +2,8 @@
 title: AWS ec2에 Spring Boot 서버 배포하기
 author: dnya0
 date:   2024-04-06 11:57:00 +0900
-categories: [Study, AWS]
-tag: [Study, AWS, ec2, RDS, mysql]
+categories: [TIL, AWS]
+tag: [AWS, ec2, RDS, mysql]
 ---
 
 ## JAR 파일 복사해서 서버 띄우기

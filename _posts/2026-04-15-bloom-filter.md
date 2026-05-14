@@ -2,8 +2,8 @@
 title: Gmail에서 사용자 이름의 중복처리를 어떻게 구현하는 걸까?
 author: dnya0
 date: 2026-04-15 04:00:00 +0900
-categories: [Study, CS]
-tag: [Post, Study, BloomFilter]
+categories: [Backend, CS]
+tag: [Post, Study, BloomFilter, Backend]
 math: true
 mermaid: true
 ---

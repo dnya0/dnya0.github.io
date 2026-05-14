@@ -2,7 +2,7 @@
 title: Reflection이란?
 author: dnya0
 date: 2025-09-21 19:36:00 +0900
-categories: [Study, Spring]
+categories: [Backend, Spring]
 tag: [Study, Spring, Java, Reflection]
 math: true
 mermaid: true

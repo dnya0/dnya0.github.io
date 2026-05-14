@@ -2,8 +2,8 @@
 title: Transactional 한계 극복해보기
 author: dnya0
 date: 2026-02-04 22:16:00 +0900
-categories: [Study, Spring]
-tag: [Post, Study, Kotlin, Spring, Transactional, AOP]
+categories: [Backend, Spring]
+tag: [Study, Kotlin, Spring, Transactional, AOP]
 math: true
 mermaid: true
 image:

@@ -2,7 +2,7 @@
 title: IntelliJ 단축키 (Windows / Linux)
 author: dnya0
 date:   2022-07-27 15:39:00 +0900
-categories: [Post, IntelliJ]
+categories: [TIL, IntelliJ]
 tag: [IntelliJ]
 ---
 

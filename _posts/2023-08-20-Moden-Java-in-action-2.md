@@ -2,8 +2,8 @@
 title: 모던 자바 인 액션 - 02. 동작 파라미터화 코드 전달하기
 author: dnya0
 date:   2023-08-20 02:04:00 +0900
-categories: [Study, 모던 자바 인 액션]
-tag: [Study, 모던 자바 인 액션]
+categories: [Book, 모던 자바 인 액션]
+tag: [Book, 모던 자바 인 액션]
 math: true
 mermaid: true
 image:

@@ -2,7 +2,7 @@
 title: 자바 메모리 누수 해결해보기
 author: dnya0
 date:   2024-10-16 10:05:00 +0900
-categories: [Post, TroubleShooting]
+categories: [TroubleShooting, Java]
 tag: [Study, Linux, TroubleShooting, Java, MemoryLeak]
 ---
 

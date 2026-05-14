@@ -2,8 +2,8 @@
 title: 우아한 프리코스 회고
 author: dnya0
 date:   2023-11-24 08:16:00 +0900
-categories: [Post, Review]
-tag: [Post, Woowa, Review]
+categories: [Post, WoowaCourse]
+tag: [Post, WoowaCourse, Review]
 ---
 
 <br>

@@ -2,7 +2,7 @@
 title: 객체지향의 사실과 오해 - 04. 역할, 책임, 협력
 author: dnya0
 date:   2023-08-03 20:32:00 +0900
-categories: [Study, 객체지향의 사실과 오해]
+categories: [Book, 객체지향의 사실과 오해]
 tag: [Study, 객체지향의 사실과 오해]
 math: true
 mermaid: true

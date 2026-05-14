@@ -2,7 +2,7 @@
 title: AWS 로드밸런서
 author: dnya0
 date:   2024-04-01 18:13:00 +0900
-categories: [Study, AWS]
+categories: [Book, AWS]
 tag: [Study, AWS, ec2]
 ---
 

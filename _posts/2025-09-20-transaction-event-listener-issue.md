@@ -2,8 +2,8 @@
 title: TransactionalEventListener 사용 시 DB Insert가 나가지 않는 이슈
 author: dnya0
 date: 2025-09-20 00:37:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, Java, Event]
+categories: [Backend, Spring]
+tag: [Study, Spring, Kotlin, Java, Event, Transactional]
 math: true
 mermaid: true
 image:

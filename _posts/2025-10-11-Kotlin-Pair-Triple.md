@@ -2,8 +2,8 @@
 title: Kotlin Pair와 Triple
 author: dnya0
 date: 2025-10-11 17:30:00 +0900
-categories: [Study, Kotlin]
-tag: [Study, Kotlin]
+categories: [Backend, Kotlin]
+tag: [Kotlin]
 math: true
 mermaid: true
 image:

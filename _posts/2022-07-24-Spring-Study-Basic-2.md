@@ -2,8 +2,8 @@
 title: Spring 입문 2 - 정적 컨텐츠, MVC, API
 author: dnya0
 date:   2022-07-24 21:53:00 +0900
-categories: [Study, Spring]
-tag: [Spring, Springoot, Study, Inflearn]
+categories: [Lecture, Spring]
+tag: [Spring, SpringBoot, Inflearn]
 ---
 
 > 인프런 김영한 님 스프링 입문 강의를 들은 후 공부한 내용입니다.

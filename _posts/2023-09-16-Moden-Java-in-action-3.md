@@ -2,7 +2,7 @@
 title: 모던 자바 인 액션 - 03. 람다 표현식
 author: dnya0
 date:   2023-09-16 15:25:00 +0900
-categories: [Study, 모던 자바 인 액션]
+categories: [Book, 모던 자바 인 액션]
 tag: [Study, 모던 자바 인 액션]
 math: true
 mermaid: true

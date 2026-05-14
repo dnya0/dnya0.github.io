@@ -2,7 +2,7 @@
 title: 객체지향의 사실과 오해 - 01. 협력하는 객체들의 공동체
 author: dnya0
 date:   2023-07-20 23:19:00 +0900
-categories: [Study, 객체지향의 사실과 오해]
+categories: [Book, 객체지향의 사실과 오해]
 tag: [Study, 객체지향의 사실과 오해]
 math: true
 mermaid: true

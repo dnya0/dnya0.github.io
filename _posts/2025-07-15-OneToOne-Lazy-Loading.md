@@ -2,8 +2,8 @@
 title: OneToOne에서 Fetch 전략을 Lazy로 설정했을 때
 author: dnya0
 date: 2025-07-15 17:49:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, OneToOne, Kotlin]
+categories: [Backend, Spring]
+tag: [Study, Spring, JPA, Kotlin, OneToOne]
 ---
 
 JPA에서 `@OneToOne` 매핑시 Fetch 전략을 Lazy로 설정해도 EAGER로 동작하는 경우가 있다. 어떤 경우에 이러한 문제점이 발생하는지, 그리고 나는 어떻게 해결했는지 글을 써보도록 하겠다.

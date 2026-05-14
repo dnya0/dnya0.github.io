@@ -2,7 +2,7 @@
 title: 비즈니스 로직 처리
 author: dnya0
 date:   2023-07-06 00:13:00 +0900
-categories: [Study, Spring]
+categories: [Backend, Spring] 
 tag: [Study, Spring, Web]
 math: true
 mermaid: true

@@ -2,7 +2,7 @@
 title: 코루틴과 가상 스레드에 대해 알아보기
 author: dnya0
 date:   2025-10-10 10:44:00 +0900
-categories: [Study, Concurrency]
+categories: [Backend, Concurrency]
 tag: [Study, Java, Kotlin, Coroutine, VirtualThreads, Concurrency]
 ---
 

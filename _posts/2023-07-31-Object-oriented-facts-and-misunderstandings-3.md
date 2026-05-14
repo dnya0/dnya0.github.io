@@ -2,7 +2,7 @@
 title: 객체지향의 사실과 오해 - 03. 타입과 추상화
 author: dnya0
 date:   2023-07-31 21:08:00 +0900
-categories: [Study, 객체지향의 사실과 오해]
+categories: [Book, 객체지향의 사실과 오해]
 tag: [Study, 객체지향의 사실과 오해]
 math: true
 mermaid: true

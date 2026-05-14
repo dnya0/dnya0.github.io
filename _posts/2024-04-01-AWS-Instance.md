@@ -2,8 +2,8 @@
 title: AWS EC2에 접속하기
 author: dnya0
 date:   2024-04-01 04:17:00 +0900
-categories: [Study, AWS]
-tag: [Study, AWS, ec2]
+categories: [TIL, AWS]
+tag: [AWS, EC2]
 ---
 
 ## 인스턴스에 접속하기

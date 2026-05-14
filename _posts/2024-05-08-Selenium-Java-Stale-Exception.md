@@ -2,7 +2,7 @@
 title: Java Selenium StaleElementReferenceException
 author: dnya0
 date:   2024-05-08 21:25:00 +0900
-categories: [Study, Selenium]
+categories: [TroubleShooting, Selenium]
 tag: [Study, Selenium, Crawling, Java]
 ---
 

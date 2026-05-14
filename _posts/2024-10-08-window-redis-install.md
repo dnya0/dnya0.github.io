@@ -2,8 +2,8 @@
 title: Windows에서 Redis 설치하기 with WSL
 author: dnya0
 date:   2024-10-08 12:05:00 +0900
-categories: [Post, Redis]
-tag: [Study, Redis, Window, WSL]
+categories: [TIL, Redis]
+tag: [Redis, Window, WSL, Redis]
 math: true
 mermaid: true
 image:

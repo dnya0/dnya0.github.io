@@ -2,8 +2,8 @@
 title: Spring Security Session방식과 JWT 방식의 차이
 author: dnya0
 date:   2024-04-05 00:44:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, Security, JWT, Session]
+categories: [Backend, Spring]
+tag: [Spring, Security, JWT, Session]
 math: true
 mermaid: true
 image:

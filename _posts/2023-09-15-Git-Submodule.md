@@ -1,8 +1,8 @@
 ---
-title: Git submodule 
+title: Git Submodule 
 author: dnya0
 date:   2023-09-15 17:23:00 +0900
-categories: [Post, Git]
+categories: [TIL, Git]
 tag: [Git, Github, Study, Submodule]
 ---
 
@@ -12,7 +12,7 @@ tag: [Git, Github, Study, Submodule]
 
 ## 📝 Submodule이란?
 
-Git의 레포지토리 하위에 다른 저장소를 관리하기 위한 도구이다. 이때 상위 레포지토리를 슈퍼 프로젝트(superproject), 하위 레포지토리를 서브 모듈(submodule)이라고 부른다. 
+Git의 레포지토리 하위에 다른 저장소를 관리하기 위한 도구이다. 이때 상위 레포지토리를 슈퍼 프로젝트(superproject), 하위 레포지토리를 서브 모듈(Submodule)이라고 부른다. 
 
 나는 처음에 이 서브모듈이 그냥 다른 레포지토리를 연결한 라이브러리라는 개념으로 이해했다. 그러나 블로그를 업데이트할 때마다 이 서브모듈을 어떻게 pull해야할지 몰랐다. 서브모듈이란 이름도 몰랐기에 그냥 무작정 검색하다가 '서브모듈'이라는 단어를 발견하게 된 것이다.
 

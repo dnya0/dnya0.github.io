@@ -2,7 +2,7 @@
 title: 모던 자바 인 액션 - 01. 자바 8, 9, 10, 11
 author: dnya0
 date:   2023-08-11 00:27:00 +0900
-categories: [Study, 모던 자바 인 액션]
+categories: [Book, 모던 자바 인 액션]
 tag: [Study, 모던 자바 인 액션]
 math: true
 mermaid: true

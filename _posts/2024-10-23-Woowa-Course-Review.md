@@ -2,7 +2,7 @@
 title: 우아한 테크코스 프리코스 회고
 author: dnya0
 date:   2024-10-23 01:44:00 +0900
-categories: [Post, Review]
+categories: [Post, WoowaCourse]
 tag: [Study, BootCamp, WoowaCourse, Java]
 ---
 

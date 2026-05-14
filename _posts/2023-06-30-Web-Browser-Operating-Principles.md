@@ -2,8 +2,8 @@
 title: 웹 브라우저 동작 원리
 author: dnya0
 date:   2023-06-30 19:00:00 +0900
-categories: [Study, CS]
-tag: [Study, ComputerScience, CS]
+categories: [Backend, CS]
+tag: [Study, CS, Browser, DNS, TCP]
 math: true
 mermaid: true
 image:

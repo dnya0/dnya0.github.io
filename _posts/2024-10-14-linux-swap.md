@@ -2,8 +2,8 @@
 title: Linux Swap 파일 삭제 및 재생성 방법
 author: dnya0
 date:   2024-10-14 18:05:00 +0900
-categories: [Post, Linux]
-tag: [Study, Linux, Swap]
+categories: [TIL, Linux]
+tag: [Linux, Swap]
 ---
 
 ## 🥑 들어가며

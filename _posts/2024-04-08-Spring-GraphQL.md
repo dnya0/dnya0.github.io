@@ -2,8 +2,8 @@
 title: Spring에서 GraphQL 사용해보기
 author: dnya0
 date:   2024-04-08 18:18:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, GraphQL]
+categories: [Backend, Spring]
+tag: [Spring, GraphQL]
 ---
 
 ## 🤔 GraphQL이란?

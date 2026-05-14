@@ -2,8 +2,8 @@
 title: 백준 장학금 5주차 - 회고
 author: dnya0
 date:   2023-08-31 08:51:00 +0900
-categories: [Event, 백준 장학금]
-tag: [Event, BOJ, Scholarship, 백준 장학금]
+categories: [Post, BOJ]
+tag: [Event, BOJ, Scholarship]
 ---
 
 ## 🎈 설정한 목표와 목표 달성 결과 공유

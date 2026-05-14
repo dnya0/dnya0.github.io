@@ -2,7 +2,7 @@
 title: Prometheus + Grafana 적용기
 author: dnya0
 date: 2025-08-09 06:19:00 +0900
-categories: [Study, Monitoring]
+categories: [Infra, Monitoring]
 tag: [Study, Grafana, Prometheus, Monitoring, AWS]
 ---
 

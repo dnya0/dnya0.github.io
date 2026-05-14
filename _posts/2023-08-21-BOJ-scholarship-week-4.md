@@ -2,8 +2,8 @@
 title: 백준 장학금 4주차 - 4주차 경과
 author: dnya0
 date:   2023-08-21 14:45:00 +0900
-categories: [Event, 백준 장학금]
-tag: [Event, BOJ, Scholarship, 백준 장학금]
+categories: [Post, BOJ]
+tag: [Event, BOJ, Scholarship]
 ---
 
 ## 📌 4주차 경과

@@ -2,13 +2,13 @@
 title: Terraform 사용해보기 1
 author: dnya0
 date: 2026-04-12 18:00:00 +0900
-categories: [Study, Terraform]
-tag: [Post, Study, Terraform, Infra]
+categories: [Infra, Terraform]
+tag: [Post, Terraform, Infra]
 math: true
 mermaid: true
 image:
   path: ../assets/img/posts-image/terraform.png
-  alt: Spring Image
+  alt: Terraform Image
 ---
 
 ## 🥑 들어가며

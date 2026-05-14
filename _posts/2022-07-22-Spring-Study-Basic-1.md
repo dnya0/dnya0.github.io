@@ -2,8 +2,8 @@
 title: Spring 입문 1 - 프로젝트 생성, 라이브러리, 빌드
 author: dnya0
 date:   2022-07-22 19:46:00 +0900
-categories: [Study, Spring]
-tag: [Spring, Springoot, Study, Inflearn]
+categories: [Lecture, Spring]
+tag: [Spring, SpringBoot, Inflearn]
 ---
 
 > 인프런 김영한 님 스프링 입문 강의를 들은 후 공부한 내용입니다.

@@ -2,8 +2,8 @@
 title: Spring 중복키 설정
 author: dnya0
 date:   2022-11-09 16:07:00 +0900
-categories: [Study, JPA]
-tag: [Spring, Springoot, Study, JPA, Java, ERROR]
+categories: [TroubleShooting, Spring]
+tag: [Spring, JPA, Java, Error]
 ---
 
 JPA 엔티티에 중복키를 선언하려하니 duplicate 오류가 나서 방법을 찾아보았다.

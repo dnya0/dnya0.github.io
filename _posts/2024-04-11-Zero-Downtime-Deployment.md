@@ -2,8 +2,8 @@
 title: 무중단 배포 알아보기
 author: dnya0
 date:   2024-04-11 11:25:00 +0900
-categories: [Study, Infra]
-tag: [Study, Infra, AWS, BlueGreen]
+categories: [Infra, Deploy]
+tag: [Study, Infra, AWS, Deployment]
 ---
 
 ## 🥝 무중단 배포

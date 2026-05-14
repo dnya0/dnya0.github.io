@@ -2,7 +2,7 @@
 title: 객체지향의 사실과 오해 - 02. 이상한 나라의 객체
 author: dnya0
 date:   2023-07-27 20:32:00 +0900
-categories: [Study, 객체지향의 사실과 오해]
+categories: [Book, 객체지향의 사실과 오해]
 tag: [Study, 객체지향의 사실과 오해]
 math: true
 mermaid: true

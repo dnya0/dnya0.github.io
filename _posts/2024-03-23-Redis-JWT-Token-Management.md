@@ -2,8 +2,8 @@
 title: Redis로 JWT 토큰 관리하기
 author: dnya0
 date:   2024-03-23 02:59:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, Redis, JWT, Token]
+categories: [Backend, Spring]
+tag: [Spring, Redis, JWT]
 math: true
 mermaid: true
 image:

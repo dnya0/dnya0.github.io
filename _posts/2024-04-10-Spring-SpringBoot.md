@@ -2,8 +2,8 @@
 title: Spring Framework와 Spring Boot의 차이
 author: dnya0
 date:   2024-04-10 17:30:00 +0900
-categories: [StudyGroup, Spring]
-tag: [StudyGroup, Spring]
+categories: [Backend, Spring]
+tag: [Backend, Spring]
 math: true
 mermaid: true
 image:

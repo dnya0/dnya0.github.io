@@ -2,8 +2,8 @@
 title: 백준 장학금 1주차 - 신청 이유와 목표, 소감
 author: dnya0
 date:   2023-07-25 11:29:00 +0900
-categories: [Event, 백준 장학금]
-tag: [Event, BOJ, Scholarship, 백준 장학금]
+categories: [Post, BOJ]
+tag: [Event, BOJ, Scholarship]
 ---
 
 ## 🍭 백준 장학금을 신청하게된 이유

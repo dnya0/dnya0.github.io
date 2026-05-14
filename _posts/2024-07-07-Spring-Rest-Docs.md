@@ -2,8 +2,8 @@
 title: Spring Rest Docs 시작하기
 author: dnya0
 date:   2024-07-14 19:58:00 +0900
-categories: [Study, Spring]
-tag: [Study, Spring, Java, Spring Rest Docs]
+categories: [Backend, Spring]
+tag: [Spring, Java, RestDocs]
 ---
 
 프로젝트를 진행하면서 API를 자동으로 문서화할 수 있지 않을까 고민하였다. 그동안 노션에 직접 적고 있었는데 직접 관리를 해줘야한다는 단점이 있었다. 별거 아닐 수 있지만 꽤나 큰 단점이다. 직접 시간을 들여 작성을 해야하고, 오타나 실수로 누락되는 부분이 있을 수 있기 때문이다. 나는 덜렁거리는 성격이라 깜빡하는 일이 많기에 해결 방법으로 자동으로 문서화하도록 전환하기로 하였다.
