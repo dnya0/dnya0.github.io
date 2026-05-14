@@ -399,9 +399,9 @@ loop(); // 이 순간부터 브라우저가 응답을 멈춘다
 
 세 프레임워크는 각자의 언어와 런타임 위에서 Event Loop를 다르게 구현하고 있다.
 
-### Node.js (NestJS의 기반)
+<br>
 
-Node.js는 **libuv**라는 C 라이브러리를 통해 Event Loop를 구현한다. 싱글 스레드지만 libuv의 스레드 풀을 이용해 파일 I/O 등의 블로킹 작업을 처리한다.
+### Node.js (NestJS의 기반)
 
 ```
 Node.js Event Loop 6단계 (Phase)
@@ -429,6 +429,10 @@ Node.js Event Loop 6단계 (Phase)
 └──┤           timers          │
    └───────────────────────────┘
 ```
+
+Node.js는 **libuv**라는 C 라이브러리를 통해 Event Loop를 구현한다. 싱글 스레드지만 libuv의 스레드 풀을 이용해 파일 I/O 등의 블로킹 작업을 처리한다.
+
+![](/assets/img/posts-image/2026-05-14-15.png)
 
 NestJS는 이 위에서 동작하며, `async/await`와 `Promise`를 자연스럽게 지원한다.
 
