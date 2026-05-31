@@ -84,3 +84,47 @@ mariyam:x:1001:1001::/home/mariyam:/sbin/nologin
 ```
 
 <br>
+
+## Day2 - Temporary User Setup with Expiry
+
+## Problem
+
+> As part of the temporary assignment to the Nautilus project, a developer named `ravi` requires access for a limited duration. To ensure smooth access management, a temporary user account with an expiry date is needed. Here's what you need to do:
+>
+> Create a user named ravi on App Server 3 in Stratos Datacenter. Set the expiry date to `2027-04-15`, ensuring the user is created in lowercase as per standard protocol.
+>
+> Note: You can find the infrastructure details by clicking on the Details of all Users and Servers button on the top-right section of the page.
+
+<br>
+
+### Explanation
+
+이 문제는
+
+> 특정 날짜까지만 사용할 수 있는 임시 Linux 계정을 생성하라
+
+라는 뜻이다. 지정된 날짜 이후에는 계정이 자동 만료되도록 설정해야 한다.
+
+Linux에서 *외주 인력, 단기 프로젝트 인원, 임시 접근 계정* 같은 상황에서 자주 사용한다.
+
+<br>
+
+### Answer
+
+`-e`를 사용하면 만료 날짜를 지정할 수 있다.
+
+- `-e`: expiry date 지정 옵션
+
+```shell
+$ ssh banner@stapp03
+$ sudo useradd -e 2027-04-15 ravi
+
+$ sudo chage -l ravi
+Last password change                                    : May 31, 2026
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : Apr 15, 2027
+Minimum number of days between password change          : 0
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+```

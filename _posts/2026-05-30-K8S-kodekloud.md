@@ -50,7 +50,7 @@ $ kubectl run pod-httpd \
   --dry-run=client -o yaml > pod.yaml
 ```
 
-그 다음 pom.yaml을 수정해준다.
+그 다음 pod.yaml을 수정해준다.
 
 ```yml
 apiVersion: v1
@@ -95,3 +95,106 @@ selector:
 와 같이 사용된다.
 
 이번 실습에서는 imperative command를 통해 기본 YAML을 생성한 뒤 수정하는 방식을 사용했다. Kubernetes를 처음 학습할 때는 직접 YAML을 작성하기보다 기본 구조를 생성한 뒤 수정하는 방식이 훨씬 이해하기 쉬운 것 같다.
+
+<br>
+
+## 2. Deploy Applications with Kubernetes Deployments
+
+### Problem
+
+> The Nautilus DevOps team is delving into Kubernetes for app management. One team member needs to create a deployment following these details:
+>
+> Create a deployment named `nginx` to deploy the application `nginx` using the image `nginx:latest` (ensure to specify the tag)
+> 
+> `Note:` The `kubectl` utility on the `jump-host` has been configured to work with the Kubernetes cluster.
+
+<br>
+
+### Explanation
+
+이 문제는 Deployment를 생성하라는 문제이다. Pod와 Deployment의 차이는 아래와 같다.
+
+#### Pod
+
+가장 작은 배포 단위이다.
+
+```txt
+Pod
+ └── Container (nginx)
+```
+
+실제로 컨테이너가 실행되는 공간을 뜻한다.
+
+```shell
+$ kubectl run nginx --image=nginx:latest
+```
+이렇게 할 경우 nginx Pod가 생긴다. 하지만 이 경우 Pod 자체는 “관리 기능”이 거의 없기 때문에 아래와 같은 상황에서 직접 관리하지 못한다.
+
+- Pod가 죽었을 경우
+- 서버 장애
+- 여러 개 띄우고 싶을 경우
+- 업데이트
+
+#### Deployment
+
+Pod를 관리하는 상위 리소스이다. 구조는 아래와 같다.
+
+```txt
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pods
+```
+
+Deployment는:
+
+- Pod 생성
+- Pod 복구
+- 개수 유지
+- Rolling Update
+- 재배포
+
+같은 걸 자동으로 해준다.
+
+```shell
+$ kubectl create deployment nginx \
+  --image=nginx:latest
+```
+
+
+### Additional Notes
+
+Kubernetes 기본 구조는 아래와 같다.
+
+```txt
+Container
+  ↓
+Pod
+  ↓
+Deployment
+  ↓
+Service
+  ↓
+Ingress
+```
+
+| 종류          | 역할             | 주 사용 사례       |
+| ----------- | -------------- | ------------- |
+| ReplicaSet  | Pod 개수 유지      | Deployment 내부 |
+| Deployment  | Stateless 앱 배포 | Web/API 서버    |
+| StatefulSet | 상태 저장 앱 관리     | DB/Kafka      |
+| DaemonSet   | 모든 노드에 배포      | 로그/모니터링       |
+
+#### 운영 흐름
+
+```txt
+웹 서버
+→ Deployment
+
+PostgreSQL/Kafka
+→ StatefulSet
+
+로그 수집기
+→ DaemonSet
+```
