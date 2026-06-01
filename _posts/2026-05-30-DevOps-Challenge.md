@@ -87,7 +87,7 @@ mariyam:x:1001:1001::/home/mariyam:/sbin/nologin
 
 ## Day2 - Temporary User Setup with Expiry
 
-## Problem
+### Problem
 
 > As part of the temporary assignment to the Nautilus project, a developer named `ravi` requires access for a limited duration. To ensure smooth access management, a temporary user account with an expiry date is needed. Here's what you need to do:
 >
@@ -127,4 +127,37 @@ Account expires                                         : Apr 15, 2027
 Minimum number of days between password change          : 0
 Maximum number of days between password change          : 99999
 Number of days of warning before password expires       : 7
+```
+
+<br>
+
+## Day3 - Secure Root SSH Access
+
+### Problem
+
+> Following security audits, the `xFusionCorp Industries` security team has rolled out new protocols, including the restriction of direct root SSH login.
+> 
+> Your task is to disable direct SSH root login on all app servers within the `Stratos Datacenter`.
+
+<br>
+
+### Explanation
+
+이 문제는
+
+> 모든 App Server에서 root 계정으로 직접 SSH 로그인하는 걸 막아라
+
+라는 뜻이다. 보안상 `ssh root@stapp01`로 접속하는 것을 금지하려는 것이다. 보통은 일반 사용자로 로그인 또는 sudo 사용 방식을 강제한다.
+
+<br>
+
+### Answer
+
+각 서버에 접속하여 설정을 수정하면 된다.
+
+```shell
+$ ssh tony@stapp01
+$ sudo vi /etc/ssh/sshd_config
+# PermitRootLogin yes에서 no로 변경
+$ sudo systemctl restart sshd
 ```
