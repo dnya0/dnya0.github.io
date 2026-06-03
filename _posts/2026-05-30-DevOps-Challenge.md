@@ -161,3 +161,37 @@ $ sudo vi /etc/ssh/sshd_config
 # PermitRootLogin yes에서 no로 변경
 $ sudo systemctl restart sshd
 ```
+
+<br>
+
+## Day4 - Script Execution Permissions
+
+### Problem
+
+> In a bid to automate backup processes, the `xFusionCorp Industries` sysadmin team has developed a new bash script named `xfusioncorp.sh`. While the script has been distributed to all necessary servers, it lacks executable permissions on `App Server 3` within the Stratos Datacenter.
+>
+> Your task is to grant executable permissions to the `/tmp/xfusioncorp.sh` script on `App Server 3`. Additionally, ensure that all users have the capability to execute it.
+
+<br>
+
+### Explanation
+
+이 문제는
+
+> `/tmp/xfusioncorp.sh` 파일에 실행 권한(executable permission)을 추가하라
+
+라는 뜻이다.
+
+<br>
+
+### Answer
+
+```shell
+$ ssh banner@stapp03
+$ sudo chmod 755 /tmp/xfusioncorp.sh
+
+$ ls -l /tmp/xfusioncorp.sh
+-rwxr-xr-x 1 root root 40 Jun 3 14:39 /tmp/xfusioncorp.sh
+```
+
+처음에 `+x`로 했는데 틀렸다. 파일을 확인해보니 권한이 `---x--x--x`인 비정상적인 형태였다.
