@@ -195,3 +195,61 @@ $ ls -l /tmp/xfusioncorp.sh
 ```
 
 처음에 `+x`로 했는데 틀렸다. 파일을 확인해보니 권한이 `---x--x--x`인 비정상적인 형태였다.
+
+<br>
+
+## Day5 - SElinux Installation and Configuration
+
+### Problem
+
+> Following a security audit, the xFusionCorp Industries security team has opted to enhance application and server security with SELinux. To initiate testing, the following requirements have been established for `App server 1` in the `Stratos Datacenter:`
+
+>   1. Install the required `SELinux` packages
+>   2. Permanently disable SELinux for the time being; it will be re-enabled after necessary configuration changes.
+>   3. No need to reboot the server, as a scheduled maintenance reboot is already planned for tonight.
+>   4. Disregard the current status of SELinux via the command line; the final status after the reboot should be `disabled`.
+
+<br>
+
+### Explanation
+
+> SELinux 관련 패키지를 설치하고, 재부팅 후에는 SELinux가 비활성화(disabled) 상태가 되도록 설정하라
+
+SELinux는 Linux 보안 시스템 중 하나로 정식 명칭은 `Security-Enhanced Linux`이며, 원래는 `National Security Agency(NSA)`에서 개발했다.
+
+보통 Linux 권한은 사용자(user), 그룹(group), 파일 권한(rwx)으로 이루어져 있어 `-rwxr-xr-x`와 같이 누가 파일을 읽을 수 있고 실행시킬 수 있는지 정도로만 관리한다. 그러나 이 방식만으로는 부족할 때가 있어 나온 것이 SELinux이다. 예를 들어, nginx 프로세스가 해킹됨, root 권한 획득, 시스템 파일 접근과 같은 문제가 발생할 경우 기존 권한 체계만으로는 부족하다.
+
+SELinux는 **프로세스가 무엇을 할 수 있는지 강제로 제한**한다. 즉, root라도 모든 것을 다할 수 있는 것이 아니라는 뜻이다.
+
+예를 들어, 일반 Linux에서는 nginx가 root면 뭐든 실행 가능했지만 SELinux는 nginx는 웹 파일만 읽도록, DB 접근 금지, 특정 포트만 사용 가능하게 제한을 걸어놓을 수 있는 것이다.
+
+즉, **사용자 권한 + 프로세스 정책**을 동시에 검사한다. 
+
+그런데 SELinux는 강력하지만 설정 복잡하고 원인 분석과 **접근이 안되는 이유를 찾기 어렵다**는 단점이 있다. 그래서 개발 환경에서는 종종 `disabled`로 꺼두기도 한다.
+
+SELinux 상태는 아래와 같이 있다.
+
+| 상태 | 의미 |
+| :---: | :--- |
+| Enforcing | 정책 적용 + 차단 |
+| Permissive | 차단 안 함, 로그만 기록 |
+| Disabled | SELinux 비활성화 |
+
+확인 방법은 `getenforce`를 입력하면 된다.
+
+<br>
+
+### Answer
+
+```shell
+$ ssh tony@stapp01
+$ sudo yum install -y selinux-policy selinux-policy-targeted
+$ sudo vi /etc/selinux/config
+# SELINUX=disabled로 고칠 것
+
+#확인
+$ getenforce
+Disabled
+```
+
+<br>
