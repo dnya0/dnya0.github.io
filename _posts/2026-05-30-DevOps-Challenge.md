@@ -253,3 +253,40 @@ Disabled
 ```
 
 <br>
+
+## Day6 - Create a Cron Job
+
+### Problem
+
+> The `Nautilus` system admins team has prepared scripts to automate several day-to-day tasks. They want them to be deployed on all app servers in `Stratos DC` on a set schedule. Before that they need to test similar functionality with a sample cron job. Therefore, perform the steps below:
+>
+>   a. Install `cronie` package on all `Nautilus` app servers and start `crond` service.
+>   b. Add a cron `*/5 * * * * echo hello > /tmp/cron_text` for `root` user.
+
+<br>
+
+### Explanation
+
+모든 App Server에 cron 서비스를 설치하고 실행한 뒤, root 계정에 5분마다 실행되는 cron job을 등록하면 된다.
+
+<br>
+
+### Answer
+
+```shell
+# 아래 과정 반복
+$ ssh tony@stapp01
+$ sudo yum install -y cronie
+
+$ sudo systemctl enable crond
+$ sudo systemctl start crond
+
+$ sudo crontab -e
+# */5 * * * * echo hello > /tmp/cron_text
+
+$ sudo crontab -l
+*/5 * * * * echo hello > /tmp/cron_text
+```
+
+<br>
+
