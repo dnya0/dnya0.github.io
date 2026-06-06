@@ -290,3 +290,63 @@ $ sudo crontab -l
 
 <br>
 
+
+## Day7 - Linux SSH Authentication
+
+### Problem
+
+> The system admins team of `xFusionCorp Industries` has set up some scripts on `jump host` that run on regular intervals and perform operations on all app servers in `Stratos Datacenter`. To make these scripts work properly we need to make sure the `thor` user on jump host has password-less SSH access to all app servers through their respective sudo users (i.e `tony` for app server 1). Based on the requirements, perform the following:
+>
+> Set up a password-less authentication from user `thor` on jump host to all app servers through their respective sudo users.
+
+
+<br>
+
+### Explanation
+
+> jump-host의 thor 유저가 비밀번호 입력 없이 각 App Server에 SSH 접속할 수 있도록 설정하라
+
+처음에 이걸 읽고 각 서버마다 thor 유저를 만들어야하는건가 했다. 그러나 이 뜻은 **thor 계정으로 SSH 명령을 실행했을 때** 비밀번호 없이 접속되어야 한다는 뜻이었다.
+
+즉, 구조가 아래와 같이 된다. 
+
+```text
+thor @ jump-host
+   ↓
+ssh tony@stapp01
+```
+
+`stapp01`에 `thor` 계정을 만드는 게 아니라 `thor`의 **SSH 공개키를 tony 계정에 등록**하는 것이다.
+
+해결 방법은 간단하다.
+
+`jump-host`에서 SSH key를 생성한 후 각 App Server에 복사하면 된다.
+
+```
+thor의 공개키(id_rsa.pub)
+↓
+원격 서버 ~/.ssh/authorized_keys 추가
+```
+
+이건 실무에서
+
+- 배포 자동화
+- ansible
+- backup script
+- monitoring
+- CI/CD
+
+등이 서버 여러 대에 자동 접속할 때 사용된다.
+
+즉, 사람이 비밀번호 입력 안 해도 스크립트가 자동 SSH 가능하도록 만드는 것이다.
+
+<br>
+
+### Answer
+
+```shell
+$ ssh-keygen
+$ ssh-copy-id tony@stapp01 # 반복
+```
+
+<br>

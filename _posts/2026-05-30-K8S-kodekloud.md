@@ -1,5 +1,5 @@
 ---
-title: Kubernetes 문제 풀이
+title: Kubernetes Challenge
 author: dnya0
 date: 2026-05-30 17:30:00 +0900
 categories: [Infra, Kubernetes]
@@ -157,11 +157,16 @@ Deployment는:
 
 같은 걸 자동으로 해준다.
 
+<br>
+
+### Answer
+
 ```shell
 $ kubectl create deployment nginx \
   --image=nginx:latest
 ```
 
+<br>
 
 ### Additional Notes
 
@@ -197,4 +202,37 @@ PostgreSQL/Kafka
 
 로그 수집기
 → DaemonSet
+```
+
+<br>
+
+## 3. Setup Kubernetes Namespaces and PODs
+
+### Problem
+
+> The Nautilus DevOps team is planning to deploy some micro services on Kubernetes platform. The team has already set up a Kubernetes cluster and now they want to set up some namespaces, deployments etc. Based on the current requirements, the team has shared some details as below:
+>
+> Create a namespace named `dev` and deploy a POD within it. Name the pod `dev-nginx-pod` and use the nginx image with the `latest` tag. Ensure to specify the tag as `nginx:latest`.
+>
+> `Note:` The `kubectl` utility on the `jump-host` has been configured to work with the Kubernetes cluster.
+
+<br>
+
+### Explanation
+
+이 문제는 `dev`라는 이름의 namespace를 생성한 뒤, 해당 namespace 내부에 `dev-nginx-pod`라는 이름의 nginx Pod를 생성하는 문제다.
+
+Kubernetes에서 namespace는 클러스터 내부 리소스를 논리적으로 분리하기 위한 단위이다. 보통 개발(dev), 운영(prod), 테스트(test) 환경 등을 구분할 때 사용한다.
+
+이번 문제에서는 `dev` namespace를 생성한 뒤, `--namespace=dev` 옵션을 통해 해당 namespace 내부에 Pod를 생성하면 된다.
+
+<br>
+
+### Answer
+
+```shell
+$ kubectl create namespace dev
+$ kubectl run dev-nginx-pod \
+  --image=nginx:latest \
+  --namespace=dev
 ```
