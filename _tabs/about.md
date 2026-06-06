@@ -9,22 +9,6 @@ Hello, I'm <a href="https://github.com/dnya0">Nayeong Ahn.</a> It is a blog that
 
 ---
 
-<!-- ### 💼 Work Experience
-
-**`Mar. '26 – PRESENT`** &nbsp;&nbsp; **TSE** · Backend Engineer
-
-**`May. '24 – Feb. '25`** &nbsp;&nbsp; **지란지교 데이터** · 인턴
-
-<br>
-
----
-
-### 🎓 Education
-
-**`Sep. '25 – Feb. '26`** &nbsp;&nbsp; Wanted Poten-up 부트캠프
-
-**`Mar. '20 – Feb. '24`** &nbsp;&nbsp; 공주대학교 컴퓨터공학부 소프트웨어전공 -->
-
 <div class="tl-wrap">
 
   <div class="tl-group">
@@ -87,15 +71,6 @@ Hello, I'm <a href="https://github.com/dnya0">Nayeong Ahn.</a> It is a blog that
   align-items: center;
   padding: 10px 0;
 }
-/* .tl-dot {
-  position: absolute;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #aaa;
-  z-index: 1;
-} */
  .tl-dot {
   position: absolute;
   left: 0;
