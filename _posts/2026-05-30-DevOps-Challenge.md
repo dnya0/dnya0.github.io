@@ -350,3 +350,54 @@ $ ssh-copy-id tony@stapp01 # 반복
 ```
 
 <br>
+
+## Day8 - Install Ansible
+
+### Problem
+
+> During the weekly meeting, the Nautilus DevOps team discussed about the automation and configuration management solutions that they want to implement. While considering several options, the team has decided to go with `Ansible` for now due to its simple setup and minimal pre-requisites. The team wanted to start testing using Ansible, so they have decided to use `jump host` as an Ansible controller to test different kind of tasks on rest of the servers.
+> 
+> Install `ansible` version `4.10.0` on `Jump host` using `pip3` only. Make sure Ansible binary is available globally on this system, i.e all users on this system are able to run Ansible commands.
+
+
+<br>
+
+### Explanation
+
+Jump Host를 Ansible Controller로 만들고, Ansible 4.10.0을 설치하라는 뜻이다. Ansible을 설치한 뒤 문제에 나온대로 `Make sure Ansible binary is available globally` 글로벌하게 만들어주면 된다.
+
+따라서 그냥 `pip3 install ansible==4.10.0`을 할 경우 저 명령어를 입력한 사용자만 사용할 수 있다. 앞에 `sudo`를 붙여 다른 사용자도 사용할 수 있게 해주면 된다.
+
+<br>
+
+### Answer
+
+```bash
+$ sudo pip3 install ansible==4.10.0
+```
+
+<br>
+
+### Additional Notes
+
+Ansible은 **여러 서버를 자동으로 관리하기 위한 도구**이다. 만약 바스티온 서버에서 약 100개의 앱 서버에 접속하여 작업해야할 경우 매번 SSH로 접속해서 작업하기 힘들다. 이 때 Ansible을 사용하면 한번만 실행하여 모든 작업을 끝낼 수 있다.
+
+```yml
+- hosts: app_servers
+  tasks:
+    - name: Create user
+      user:
+        name: ravi
+```
+
+을 실행할 경우
+
+```
+stapp01 → ravi 생성
+stapp02 → ravi 생성
+stapp03 → ravi 생성
+...
+100대 모두 적용
+```
+
+<br>
