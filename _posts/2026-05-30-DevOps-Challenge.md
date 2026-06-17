@@ -401,3 +401,90 @@ stapp03 → ravi 생성
 ```
 
 <br>
+
+## Day9 - MariaDB Troubleshooting
+
+### Problem
+
+> There is a critical issue going on with the `Nautilus` application in `Stratos DC`. The production support team identified that the application is unable to connect to the database. After digging into the issue, the team found that mariadb service is down on the database server.
+>
+> Look into the issue and fix the same.
+
+
+<br>
+
+### Explanation
+
+간단하다 mariadb가 다운되어 오류가 나니 고치라는 것이다. DB서버로 접속해서 다시 start시키면 된다.
+
+<br>
+
+### Answer
+
+```bash
+$ ssh peter@stdb01
+$ systemctl status mariadb
+○ mariadb.service - MariaDB 10.5 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; pre>
+     Active: inactive (dead)
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+
+$ sudo systemctl start mariadb
+Job for mariadb.service failed because the control process exited with error code.
+See "systemctl status mariadb.service" and "journalctl -xeu mariadb.service" for details.
+
+$ sudo systemctl status mariadb -l
+× mariadb.service - MariaDB 10.5 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; pre>
+     Active: failed (Result: exit-code) since Wed 2026-06-17 14:41:33 UTC; >
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+    Process: 21873 ExecStartPre=/usr/libexec/mariadb-check-socket (code=exi>
+    Process: 21895 ExecStartPre=/usr/libexec/mariadb-prepare-db-dir mariadb>
+        CPU: 88ms
+
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21983]: chown: changing owner>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21958]: Cannot change ownersh>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21958]: user.  Check that you>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21895]: Initialization of Mar>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21895]: Perhaps /etc/my.cnf i>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21895]: Initialization of Mar>
+Jun 17 14:41:33 stdb01 mariadb-prepare-db-dir[21895]: Files created so far >
+Jun 17 14:41:33 stdb01 systemd[1]: mariadb.service: Control process exited,>
+Jun 17 14:41:33 stdb01 systemd[1]: mariadb.service: Failed with result exi>
+Jun 17 14:41:33 stdb01 systemd[1]: Failed to start MariaDB 10.5 database se>
+
+# Cannot change ownership
+# MariaDB가 초기화하면서 데이터 디렉토리 소유자를 mysql 계정으로 바꾸려는데 실패한 상태
+# 보통 /var/lib/mysql 권한/소유자가 잘못되어 있을 때 많이 난다.
+
+$ sudo chown -R mysql:mysql /var/lib/mysql
+$ sudo systemctl start mariadb
+● mariadb.service - MariaDB 10.5 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; pre>
+     Active: active (running) since Wed 2026-06-17 14:45:32 UTC; 31s ago
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+    Process: 23022 ExecStartPre=/usr/libexec/mariadb-check-socket (code=exi>
+    Process: 23044 ExecStartPre=/usr/libexec/mariadb-prepare-db-dir mariadb>
+    Process: 23184 ExecStartPost=/usr/libexec/mariadb-check-upgrade (code=e>
+   Main PID: 23164 (mariadbd)
+     Status: "Taking your SQL requests now..."
+      Tasks: 13 (limit: 404677)
+     Memory: 68.7M
+        CPU: 306ms
+     CGroup: /system.slice/mariadb.service
+             └─23164 /usr/libexec/mariadbd --basedir=/usr
+
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: The second is mysql@l>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: you need to be the sy>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: After connecting you >
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: able to connect as an>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: See the MariaDB Knowl>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: Please report any pro>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: The latest informatio>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: Consider joining Mari>
+Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: https://mariadb.org/g>
+Jun 17 14:45:32 stdb01 systemd[1]: Started MariaDB 10.5 database server.
+```
