@@ -488,3 +488,62 @@ Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: Consider joining Mari>
 Jun 17 14:45:32 stdb01 mariadb-prepare-db-dir[23107]: https://mariadb.org/g>
 Jun 17 14:45:32 stdb01 systemd[1]: Started MariaDB 10.5 database server.
 ```
+
+<br>
+
+## Day10 - Linux Bash Scripts
+
+### Problem
+
+> The production support team of `xFusionCorp Industries` is working on developing some bash scripts to automate different day to day tasks. One is to create a bash script for archiving website content files. They have a static website running on `App Server 2` in `Stratos Datacenter`, and they need to create a bash script named `beta_archive.sh` which should accomplish the following tasks. (Also remember to place the script under the `/scripts` directory on `App Server 2`).
+>
+> a. Create a zip archive named `xfusioncorp_beta.zip` of `/var/www/html/beta` directory.
+> 
+> b. Save the archive in the `/archives/` directory on the `App Server 2`. This is a temporary storage, as archives from this location will be cleaned on a weekly basis. Therefore, the archive should also be copied to the `Nautilus Storage Server` so it can be retrieved later for validation purposes.
+>
+> c. Copy the created archive to the `Nautilus Storage Server` server in the `/archives/` location.
+>
+> d. Please make sure script won't ask for password while copying the archive file. Additionally, the respective server user (for example, `tony` in case of `App Server 1`) must be able to run it.
+>
+> e. Do not use sudo inside the script.
+> 
+> Note:
+> The zip package must be installed on given App Server before executing the script. This package is essential for creating the zip archive of the website files. Install it manually outside the script.
+
+<br>
+
+### Explanation
+
+문제는 길지만 핵심 내용은 `App Server 2`에서 `/var/www/html/beta`를 zip으로 압축하고, 그 zip 파일을 로컬 `/archives/`와 `Storage Server` `/archives/`에 저장하는 스크립트를 만들라는 것이다.
+
+<br>
+
+### Answer
+
+```bash
+$ ssh steve@stapp02
+$ sudo yum install -y zip
+
+$ sudo vi /scripts/beta_archive.sh
+```
+
+`beta_archive.sh` 내용
+
+```bash
+#!/bin/bash
+
+cd /var/www/html || exit 1
+
+zip -r /archives/xfusioncorp_beta.zip beta
+
+scp /archives/xfusioncorp_beta.zip natasha@ststor01:/archives/
+```
+
+```bash
+$ sudo chmod +x /scripts/beta_archive.sh
+
+$ ssh-keygen
+$ ssh-copy-id natasha@ststor01
+```
+
+<br>
