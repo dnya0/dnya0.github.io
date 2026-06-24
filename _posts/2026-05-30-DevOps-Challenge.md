@@ -511,20 +511,6 @@ Jun 17 14:45:32 stdb01 systemd[1]: Started MariaDB 10.5 database server.
 
 문제는 길지만 핵심 내용은 `App Server 2`에서 `/var/www/html/beta`를 zip으로 압축하고, 그 zip 파일을 로컬 `/archives/`와 `Storage Server` `/archives/`에 저장하는 스크립트를 만들라는 것이다.
 
-추가로 `curl http://stapp03:6100` 명령이 동작하는 이유는 Jump Host와 App Server 3가 동일한 내부 네트워크(Stratos Datacenter)에 연결되어 있기 때문이다.
-
-Tomcat은 App Server 3의 `6100` 포트에서 HTTP 요청을 수신(Listen)하고 있으며, Jump Host는 해당 포트로 HTTP 요청을 보낼 수 있다.
-
-즉, Jump Host에서:
-
-```bash
-curl http://stapp03:6100
-```
-
-를 실행하면 내부적으로 App Server 3의 `6100` 포트로 HTTP 요청이 전송되고, Tomcat이 배포된 `ROOT.war` 애플리케이션의 응답을 반환하게 된다.
-
-또한 Tomcat의 `webapps` 디렉토리에 `ROOT.war`를 배포했기 때문에 별도의 Context Path 없이 Base URL(`/`)로 접근할 수 있다.
-
 <br>
 
 ### Answer
@@ -576,6 +562,20 @@ $ ssh-copy-id natasha@ststor01
 ### Explanation
 
 App Server 3에 Tomcat 설치하여 Tomcat 포트를 6100으로 변경 후 Jump host의 `/tmp/ROOT.war`를 `App Server 3 Tomcat`에 배포하여 `http://stapp03:6100` 으로 바로 접속되게 만들면 된다.
+
+추가로 `curl http://stapp03:6100` 명령이 동작하는 이유는 Jump Host와 App Server 3가 동일한 내부 네트워크(Stratos Datacenter)에 연결되어 있기 때문이다.
+
+Tomcat은 App Server 3의 `6100` 포트에서 HTTP 요청을 수신(Listen)하고 있으며, Jump Host는 해당 포트로 HTTP 요청을 보낼 수 있다.
+
+즉, Jump Host에서:
+
+```bash
+curl http://stapp03:6100
+```
+
+를 실행하면 내부적으로 App Server 3의 `6100` 포트로 HTTP 요청이 전송되고, Tomcat이 배포된 `ROOT.war` 애플리케이션의 응답을 반환하게 된다.
+
+또한 Tomcat의 `webapps` 디렉토리에 `ROOT.war`를 배포했기 때문에 별도의 Context Path 없이 Base URL(`/`)로 접근할 수 있다.
 
 <br>
 
