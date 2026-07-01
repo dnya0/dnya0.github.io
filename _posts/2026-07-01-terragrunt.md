@@ -1,7 +1,7 @@
 ---
 title: Terragrunt란?
 author: dnya0
-date: 2026-07-01 23:40:00 +0900
+date: 2026-07-01 23:27:00 +0900
 categories: [Infra, Terraform]
 tag: [Post, Terraform, Terragrunt, Infra]
 math: true
