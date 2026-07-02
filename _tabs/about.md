@@ -16,7 +16,7 @@ Hello, I'm <a href="https://github.com/dnya0">Nayeong Ahn.</a> It is a blog that
     <div class="tl-items">
       <div class="tl-item">
         <span class="tl-dot"></span>
-        <span class="tl-date">Mar. '26 – <i>PRESENT</i></span>
+        <span class="tl-date">Mar. '26 – <i>Jun. '30</i></span>
         <span class="tl-desc"><strong>TSE</strong> · Backend Engineer</span>
       </div>
       <div class="tl-item">
